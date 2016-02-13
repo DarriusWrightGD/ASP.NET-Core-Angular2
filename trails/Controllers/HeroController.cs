@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
-using trails.Models;
+using trails.Domain;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
