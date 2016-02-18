@@ -1,0 +1,6 @@
+{
+  "MongoDB": {
+    "ConnectionString": "mongodb://darrius:password@ds061395.mongolab.com:61395/hero",
+    "Database": "hero"
+  }
+}

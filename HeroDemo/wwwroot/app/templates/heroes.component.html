@@ -1,0 +1,16 @@
+{{errorMessage}}
+<div *ngIf="heroes">
+  
+  <h2>My heroes</h2>
+  <ul class="heroes">
+    <li (click)="onSelect(hero)" *ngFor="#hero of heroes" [class.selected]="hero === selectedHero">
+      {{hero.name}}
+    </li>
+  </ul>
+  <div *ngIf="selectedHero">
+    <h2>
+      {{selectedHero.name | uppercase}} is my hero
+    </h2>
+    <button (click)="gotoDetails()"> View Details</button>
+  </div>
+</div>
