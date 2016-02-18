@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNet.Mvc;
-using HeroDemo.Domain;
 using HeroDemo.Application;
 using HeroDemo.ViewModel;
 using Microsoft.Extensions.Logging;
-
+using HeroDemo.Input;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HeroDemo.Controllers
@@ -14,8 +12,7 @@ namespace HeroDemo.Controllers
     public class HeroController : Controller
     {
         private IHeroApplication _heroApplication;
-        private ILogger<HeroController> _logger;
-        public HeroController(IHeroApplication heroApplication, ILogger<HeroController> _logger)
+        public HeroController(IHeroApplication heroApplication)
         {
             _heroApplication=  heroApplication;
         }
@@ -31,14 +28,14 @@ namespace HeroDemo.Controllers
         [HttpGet("{id}")]
         public HeroViewModel Get(string id)
         {
-            
             return _heroApplication.Get(id);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]HeroInput hero)
         {
+            _heroApplication.Add(hero);
         }
 
         // PUT api/values/5

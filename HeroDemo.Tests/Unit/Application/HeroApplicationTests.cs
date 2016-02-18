@@ -37,5 +37,10 @@ namespace HeroDemo.Tests.Application
             _heroRepo.Verify(x=>x.Get(),Times.AtMostOnce);
         } 
         
+        public void add_should_call_add_on_repository()
+        {
+            _heroRepo.Verify(x=>x.Add(),Times.AtMostOnce);
+        }
+        
     }
 }

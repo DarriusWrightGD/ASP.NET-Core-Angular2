@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using HeroDemo.Domain;
+using HeroDemo.Input;
 using HeroDemo.Repository;
 using HeroDemo.ViewModel;
 using MongoDB.Bson;
@@ -15,6 +16,11 @@ namespace HeroDemo.Application
         public HeroApplication(IHeroRepository heroRepository)
         {
             _heroRepository = heroRepository;
+        }
+
+        public void Add(HeroInput hero)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<HeroViewModel> Get()
