@@ -20,7 +20,7 @@ namespace HeroDemo.Application
 
         public void Add(HeroInput hero)
         {
-            throw new NotImplementedException();
+            _heroRepository.Add(new Hero{Name= hero.Name});
         }
 
         public IEnumerable<HeroViewModel> Get()

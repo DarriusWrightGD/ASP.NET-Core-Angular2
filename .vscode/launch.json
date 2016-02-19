@@ -10,7 +10,7 @@
 			"cwd": "${workspaceRoot}",
 			"runtimeExecutable": null,
 			"env": {
-
+	       "MONO_MANAGED_WATCHER": "disabled" 
       },
 			"externalConsole": false
 		},

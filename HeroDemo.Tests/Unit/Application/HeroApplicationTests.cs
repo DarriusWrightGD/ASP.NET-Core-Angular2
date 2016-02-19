@@ -5,6 +5,7 @@ using HeroDemo.Domain;
 using HeroDemo.Application;
 using MongoDB.Bson;
 using System.Collections.Generic;
+using HeroDemo.Input;
 
 namespace HeroDemo.Tests.Application
 {
@@ -37,9 +38,12 @@ namespace HeroDemo.Tests.Application
             _heroRepo.Verify(x=>x.Get(),Times.AtMostOnce);
         } 
         
+        [Fact]
         public void add_should_call_add_on_repository()
         {
-            _heroRepo.Verify(x=>x.Add(),Times.AtMostOnce);
+            var heroToAdd = new HeroInput{Name="foo"};
+            _application.Add(heroToAdd);
+            _heroRepo.Verify(x=>x.Add(It.Is<Hero>(h=>h.Name == heroToAdd.Name)),Times.AtMostOnce);
         }
         
     }

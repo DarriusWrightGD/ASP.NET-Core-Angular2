@@ -2,7 +2,8 @@
   "scripts": {
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "start": "npm install && gulp min  && npm run tsc"
+    "lite": "lite-server",
+    "start": "concurrent \"dnx web\" \"npm run lite\" "
   },
   "name": "hero-demo",
   "version": "0.0.0",
@@ -16,10 +17,12 @@
     "zone.js": "0.5.11"
   },
   "devDependencies": {
+    "concurrently": "^1.0.0",
     "gulp": "^3.9.0",
     "gulp-concat": "2.5.2",
     "gulp-cssmin": "0.1.7",
     "gulp-uglify": "1.2.0",
+    "lite-server": "^2.0.1",
     "lodash": "^4.3.0",
     "rimraf": "2.2.8",
     "typescript": "^1.7.5"

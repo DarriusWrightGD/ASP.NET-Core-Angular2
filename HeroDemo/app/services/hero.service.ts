@@ -10,7 +10,7 @@ import 'rxjs/Rx';
 export class HeroService {
 
 
-  private _url = '/api/hero';
+  private _url = 'http://localhost:5000/api/hero';
 
   constructor(private _http: Http) { }
 
@@ -21,7 +21,6 @@ export class HeroService {
   }
 
   getHero(id: string): Observable<Hero> {
-    console.log(id)
     return this._http.get(`${this._url}/${id}`)
       .map(res=> <Hero>res.json())
       .catch(this.handleError);

@@ -37,14 +37,14 @@ namespace HeroDemo
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        { 
+           // Add framework services.
+           services.AddMvc().AddJsonOptions(options =>{
+               options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+           });
             
-            
-            // Add framework services.
-            services.AddMvc().AddJsonOptions(options =>{
-                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            });
-            
+           services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()));
+     
            services.AddInstance<IMongoDatabase>(ConnectDB());
            services.AddSingleton<IHeroRepository,HeroRepository>();
            services.AddSingleton<IHeroApplication, HeroApplication>();     
@@ -77,20 +77,16 @@ namespace HeroDemo
             }
 
             app.UseIISPlatformHandler();
-
+            app.UseCors("AllowAll");
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
-                // routes.MapRoute(
-                //   name:"api",
-                //   template: "api/{controller}/{id?}"  
-                // );
                 routes.MapRoute(
-                    name: "default",
-                    template: "{*url}",
-                    defaults: new { controller = "Home", action = "Index" });
-            });
+                  name:"api",
+                  template: "api/{controller}/{id?}"  
+                );
+             });
         }
 
         // Entry point for the application.

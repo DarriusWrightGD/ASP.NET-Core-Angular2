@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using HeroDemo.Domain;
+using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -9,26 +10,32 @@ namespace HeroDemo.Repository
     public class HeroRepository : IHeroRepository
     {
         private IMongoDatabase _database;
+        private readonly string collectionName = "heroes";
+        private readonly ILogger<HeroRepository> _logger;
 
-        public HeroRepository(IMongoDatabase database)
+        public HeroRepository(IMongoDatabase database, ILogger<HeroRepository> logger)
         {
             _database = database;
+            _logger = logger;
         }
 
         public Hero Get(string id)
         {
             var objectId = ObjectId.Parse(id);
-            return _database.GetCollection<Hero>("heroes").Find(x => x.Id.Equals(objectId)).FirstOrDefault();
+            return HeroCollection.Find(x => x.Id.Equals(objectId)).FirstOrDefault();
         }
 
         public IEnumerable<Hero> Get()
         {
-            return _database.GetCollection<Hero>("heroes").Find(new BsonDocument()).ToList();
+            return HeroCollection.Find(new BsonDocument()).ToList();
         }
 
-        public void Add()
+        public void Add(Hero hero)
         {
-            throw new NotImplementedException();
+            HeroCollection.InsertOne(hero);
         }
+        
+        public IMongoCollection<Hero> HeroCollection { get{return _database.GetCollection<Hero>(collectionName);}  }
+        
     }
 }

@@ -15,6 +15,7 @@ namespace HeroDemo.Controllers
         public HeroController(IHeroApplication heroApplication)
         {
             _heroApplication=  heroApplication;
+            
         }
         
         // GET: api/values

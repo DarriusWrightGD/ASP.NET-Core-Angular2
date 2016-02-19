@@ -6,6 +6,6 @@ namespace HeroDemo.Repository{
     {
         Hero Get(string id);
         IEnumerable<Hero> Get();
-        void Add();
+        void Add(Hero hero);
     }
 }
