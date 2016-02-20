@@ -1,12 +1,5 @@
 <div *ngIf="hero">
   <h2>{{hero.name}} details</h2>
-  <div>
-    <label>id: </label>
-    {{hero.id}}
-  </div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="hero.name" placeholder="name">
-  </div>
+  <hero-form [hero]="hero" [formText]="'Update Hero'" [submit]="updateHero"></hero-form>
   <button (click)="goBack()" class="btn btn-default">Back</button>
 </div>

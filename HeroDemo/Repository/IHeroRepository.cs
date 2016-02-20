@@ -8,5 +8,6 @@ namespace HeroDemo.Repository{
         IEnumerable<Hero> Get();
         void Add(Hero hero);
         void Delete(string id);
+        void Update(Hero hero);
     }
 }

@@ -7,9 +7,10 @@ namespace HeroDemo.Application
 {
     public interface IHeroApplication
     {
-       HeroViewModel Get(string id);
+       HeroViewModel Get(string heroId);
        IEnumerable<HeroViewModel> Get();
        void Add(HeroInput hero);
-       void Remove(string id);
+       void Remove(string heroId);
+       void Update(HeroUpdateInput hero);
     }
 }
