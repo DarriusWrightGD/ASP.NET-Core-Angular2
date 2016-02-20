@@ -12,11 +12,9 @@ namespace HeroDemo.Controllers
     public class HeroController : Controller
     {
         private IHeroApplication _heroApplication;
-        private ILogger<HeroController> _logger;
-        public HeroController(IHeroApplication heroApplication, ILogger<HeroController> logger)
+        public HeroController(IHeroApplication heroApplication)
         {
             _heroApplication=  heroApplication;
-            _logger = logger;
         }
         
         // GET: api/values
@@ -37,7 +35,6 @@ namespace HeroDemo.Controllers
         [HttpPost]
         public void Post([FromBody]HeroInput hero)
         {
-            _logger.LogWarning("Posting heros "+ hero.Name);
             _heroApplication.Add(hero);
         }
 

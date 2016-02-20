@@ -12,7 +12,6 @@ import {HeroViewModel} from './../hero-view-model';
 export class HeroFormComponent{
   public buttonText = "Add Hero";
   private _hero: HeroViewModel = {name: ""};
-  private _active = true;
   constructor(private _heroService:HeroService, private _rotuer: Router){}
   
   addHero(){
