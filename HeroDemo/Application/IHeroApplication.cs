@@ -10,5 +10,6 @@ namespace HeroDemo.Application
        HeroViewModel Get(string id);
        IEnumerable<HeroViewModel> Get();
        void Add(HeroInput hero);
+       void Remove(string id);
     }
 }

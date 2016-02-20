@@ -13,7 +13,7 @@ import 'rxjs/Rx';
 })
 
 export class HeroesComponent implements OnInit{
-    heroes:Hero[];
+    private _heroes:Hero[];
     private selectedHero: Hero;
     private errorMessage: string;
     constructor(private _heroService: HeroService, private _router: Router){}
@@ -22,11 +22,22 @@ export class HeroesComponent implements OnInit{
 
     ngOnInit() {
       this._heroService.get()
-      .subscribe(heroes=> this.heroes= heroes);
+      .subscribe(heroes=> this._heroes= heroes);
     }
     
     gotoDetails() { 
       let link = ['HeroDetail', {id: this.selectedHero.id}];
       this._router.navigate(link);
+    }
+    
+    removeHero(id){
+      this.filterHeroes(id);
+      this._heroService.delete(id);      
+    }
+    
+    filterHeroes(id){
+      this._heroes = this._heroes.filter((hero)=>{
+        return hero.id != id;
+      });
     }
 }

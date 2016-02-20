@@ -11,12 +11,10 @@ namespace HeroDemo.Repository
     {
         private IMongoDatabase _database;
         private readonly string collectionName = "heroes";
-        private readonly ILogger<HeroRepository> _logger;
 
-        public HeroRepository(IMongoDatabase database, ILogger<HeroRepository> logger)
+        public HeroRepository(IMongoDatabase database)
         {
             _database = database;
-            _logger = logger;
         }
 
         public Hero Get(string id)
@@ -34,7 +32,13 @@ namespace HeroDemo.Repository
         {
             HeroCollection.InsertOne(hero);
         }
-        
+
+        public void Delete(string id)
+        {
+            var filter = Builders<Hero>.Filter.Eq("_id",ObjectId.Parse(id));
+            HeroCollection.DeleteOne(filter);
+        }
+
         public IMongoCollection<Hero> HeroCollection { get{return _database.GetCollection<Hero>(collectionName);}  }
         
     }

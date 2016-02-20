@@ -36,5 +36,10 @@ namespace HeroDemo.Application
               Name= model.Name  
             };
         }
+
+        public void Remove(string id)
+        {
+            _heroRepository.Delete(id);
+        }
     }
 }
