@@ -35,10 +35,24 @@ namespace HeroDemo.Repository
 
         public void Delete(string id)
         {
-            var filter = Builders<Hero>.Filter.Eq("_id",ObjectId.Parse(id));
-            HeroCollection.DeleteOne(filter);
+            HeroCollection.DeleteOne(GetIdFilter(id));
         }
 
+        public void Update(Hero hero)
+        {
+            HeroCollection.ReplaceOne(GetIdFilter(hero.Id),hero);
+        }
+        
+        private FilterDefinition<Hero> GetIdFilter(string id)
+        {
+            return Builders<Hero>.Filter.Eq("_id",ObjectId.Parse(id));
+        }
+        
+        private FilterDefinition<Hero> GetIdFilter(ObjectId id)
+        {
+            return Builders<Hero>.Filter.Eq("_id",id);
+        }
+       
         public IMongoCollection<Hero> HeroCollection { get{return _database.GetCollection<Hero>(collectionName);}  }
         
     }

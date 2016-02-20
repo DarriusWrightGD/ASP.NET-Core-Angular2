@@ -49,9 +49,16 @@ namespace HeroDemo.Tests.Application
         [Fact]
         public void remove_should_call_delete_on_repository()
         {
-            var id = "fooId";
-           _application.Remove(id);
-           _heroRepo.Verify(x=>x.Delete(It.Is<string>(s=>s.Equals(id))));
+           _application.Remove(_id);
+           _heroRepo.Verify(x=>x.Delete(It.Is<string>(s=>s.Equals(_id))));
+        }
+        
+        [Fact]
+        public void update_should_call_update_on_repository()
+        {
+            var heroName= "foo-hero";
+            _application.Update(new HeroUpdateInput{Id=_id, Name=heroName});
+            _heroRepo.Verify(x=>x.Update(It.Is<Hero>(h=>h.Id.Equals(ObjectId.Parse(_id)) && h.Name.Equals(heroName))));
         }
         
     }

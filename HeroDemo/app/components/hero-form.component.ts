@@ -4,17 +4,19 @@ import {Router} from 'angular2/router';
 import {HeroViewModel} from './../hero-view-model';
 
 @Component({
-  selector:'add-hero',
+  selector:'hero-form',
   templateUrl : 'app/templates/hero-form.component.html',
-  styleUrls : ['app/styles/hero-form.component.css']
+  styleUrls : ['app/styles/hero-form.component.css'],
+  inputs : ['hero','formText', 'submit']
 })
 
 export class HeroFormComponent{
-  public buttonText = "Add Hero";
-  private _hero: HeroViewModel = {name: ""};
+  public formText = "Add Hero";
+  public hero = {name:""};
+  public submit = this.addHero;
   constructor(private _heroService:HeroService, private _rotuer: Router){}
   
-  addHero(){
-    this._heroService.post(this._hero);
+  addHero(hero){
+    this._heroService.post(hero);
   }
 }

@@ -4,7 +4,6 @@ using HeroDemo.Application;
 using HeroDemo.ViewModel;
 using Microsoft.Extensions.Logging;
 using HeroDemo.Input;
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HeroDemo.Controllers
 {
@@ -17,34 +16,30 @@ namespace HeroDemo.Controllers
             _heroApplication=  heroApplication;
         }
         
-        // GET: api/values
         [HttpGet]
         public IEnumerable<HeroViewModel> Get()
         {
             return _heroApplication.Get();
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public HeroViewModel Get(string id)
         {
             return _heroApplication.Get(id);
         }
 
-        // POST api/values
         [HttpPost]
         public void Post([FromBody]HeroInput hero)
         {
             _heroApplication.Add(hero);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public void Put([FromBody]HeroUpdateInput hero)
         {
+            _heroApplication.Update(hero);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
