@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
     private _router: Router) { }
 
   ngOnInit() {
-    this._heroService.getHeroes()
+    this._heroService.get()
     .subscribe(heroes => this.heroes = heroes);
   }
 

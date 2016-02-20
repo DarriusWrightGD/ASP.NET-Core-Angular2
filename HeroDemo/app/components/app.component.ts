@@ -4,6 +4,7 @@ import {HTTP_PROVIDERS } from 'angular2/http';
 import {HeroDetailComponent} from './hero-detail.component';
 import {HeroesComponent} from './heroes.component';
 import {DashboardComponent} from './dashboard.component';
+import {HeroFormComponent} from './hero-form.component';
 import {Hero} from './../hero';
 import {HeroService} from './../services/hero.service';
 
@@ -18,6 +19,11 @@ import {HeroService} from './../services/hero.service';
     name: 'Dashboard',
     component: DashboardComponent,
     useAsDefault: true
+  },
+  {
+    path: '/hero-form',
+    name: "HeroForm",
+    component: HeroFormComponent
   },
   {
     path: 'detail/:id',

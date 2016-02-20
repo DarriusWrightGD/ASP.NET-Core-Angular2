@@ -1,19 +1,21 @@
 import {Component} from 'angular2/core';
 import {HeroService} from './../services/hero.service';
 import {Router} from 'angular2/router';
-import {Hero} from './../hero';
+import {HeroViewModel} from './../hero-view-model';
 
 @Component({
   selector:'add-hero',
-  templateUrl : 'app/templates/add-hero.component.html',
-   
+  templateUrl : 'app/templates/hero-form.component.html',
+  styleUrls : ['app/styles/hero-form.component.css']
 })
 
-export class AddHero{
-  private hero: Hero;
+export class HeroFormComponent{
+  public buttonText = "Add Hero";
+  private _hero: HeroViewModel = {name: ""};
+  private _active = true;
   constructor(private _heroService:HeroService, private _rotuer: Router){}
   
   addHero(){
-    
+    this._heroService.post(this._hero);
   }
 }
