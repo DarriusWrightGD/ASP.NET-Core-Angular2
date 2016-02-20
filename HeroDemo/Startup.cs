@@ -39,11 +39,17 @@ namespace HeroDemo
         public void ConfigureServices(IServiceCollection services)
         { 
            // Add framework services.
+           services.AddCors(
+               options => 
+                {
+                    options.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+                }
+           );
+           
            services.AddMvc().AddJsonOptions(options =>{
                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
            });
             
-           services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()));
      
            services.AddInstance<IMongoDatabase>(ConnectDB());
            services.AddSingleton<IHeroRepository,HeroRepository>();

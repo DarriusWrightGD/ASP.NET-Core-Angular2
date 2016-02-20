@@ -1,12 +1,15 @@
 <div class="container">
-  <h1>Hero Form<h1>
-  <form>
+  <h1>Add Hero</h1>
+  <form #heroForm="ngForm" (ngSubmit)="addHero()">
     <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" [(ngModel)]="model.name" ngControl required> 
-      <button type="submit" class="btn btn-primary">
-        Submit
-      </button>
+      <div>
+        <label for="name">Name</label>
+        <input type="text" class="form-control" placeholder="Enter Name" [(ngModel)]="_hero.name" ngControl="name" required #name="ngForm"> 
+      </div>
+      <input type="submit" value="{{buttonText}}" class="btn btn-primary" [disabled]="!heroForm.form.valid">
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name is required
+      </div>
     </div>
   </form>
 <div>
