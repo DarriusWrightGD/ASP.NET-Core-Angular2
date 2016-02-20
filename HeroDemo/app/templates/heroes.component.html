@@ -1,10 +1,10 @@
 {{errorMessage}}
-<div *ngIf="heroes">
+<div *ngIf="_heroes">
   
   <h2>My heroes</h2>
   <ul class="heroes">
-    <li (click)="onSelect(hero)" *ngFor="#hero of heroes" [class.selected]="hero === selectedHero">
-      {{hero.name}}
+    <li (click)="onSelect(hero)" *ngFor="#hero of _heroes" [class.selected]="hero === selectedHero">
+      {{hero.name}}<span class="glyphicon glyphicon-remove" (click)="removeHero(hero.id)"></span>
     </li>
   </ul>
   <div *ngIf="selectedHero">

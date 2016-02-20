@@ -46,5 +46,13 @@ namespace HeroDemo.Tests.Application
             _heroRepo.Verify(x=>x.Add(It.Is<Hero>(h=>h.Name == heroToAdd.Name)),Times.AtMostOnce);
         }
         
+        [Fact]
+        public void remove_should_call_delete_on_repository()
+        {
+            var id = "fooId";
+           _application.Remove(id);
+           _heroRepo.Verify(x=>x.Delete(It.Is<string>(s=>s.Equals(id))));
+        }
+        
     }
 }

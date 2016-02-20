@@ -46,8 +46,9 @@ namespace HeroDemo.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            _heroApplication.Remove(id);
         }
     }
 }
